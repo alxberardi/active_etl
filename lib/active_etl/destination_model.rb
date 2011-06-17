@@ -1,3 +1,5 @@
+require 'active_etl/destination'
+
 module ActiveETL
   module DestinationModel
   
@@ -10,6 +12,11 @@ module ActiveETL
     
     
     module ClassMethods
+      
+      def find_by_id(id)
+        self.send("find_by_#{primary_key}".to_sym, id)
+      end
+      
       
       protected
       

@@ -1,5 +1,7 @@
+require 'active_etl/transformation'
+
 module ActiveETL
-  class ProcTransformation < ActiveETL::Transformation
+  class ProcTransformation < Transformation
     
     def initialize(&proc)
       @proc = proc

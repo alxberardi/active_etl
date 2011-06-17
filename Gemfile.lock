@@ -1,16 +1,31 @@
+GIT
+  remote: git://github.com/AlessandroBerardi/rtree.git
+  revision: 3d66a9966f23f22456fa05c33dfc34049d113bfb
+  specs:
+    rtree (0.1.2)
+
 GEM
   remote: http://rubygems.org/
   specs:
-    activerecord (2.3.11)
-      activesupport (= 2.3.11)
-    activesupport (2.3.11)
+    activerecord (2.3.12)
+      activesupport (= 2.3.12)
+    activesupport (2.3.12)
+    diff-lcs (1.1.2)
     gem-this (0.3.6)
-    rubytree (0.8.1)
+    rspec (2.6.0)
+      rspec-core (~> 2.6.0)
+      rspec-expectations (~> 2.6.0)
+      rspec-mocks (~> 2.6.0)
+    rspec-core (2.6.4)
+    rspec-expectations (2.6.0)
+      diff-lcs (~> 1.1.2)
+    rspec-mocks (2.6.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord (~> 2.3.11)
+  activerecord (~> 2.3.12)
   gem-this
-  rubytree
+  rspec
+  rtree!

@@ -1,4 +1,4 @@
-require 'active_etl/destination_dependencies_tree'
+require 'active_etl/job_execution_sequence'
 
 module ActiveETL
   class Job
@@ -18,35 +18,21 @@ module ActiveETL
           d
         end
         
-        raise Exception, "#{destination_class} is not a valid destination" unless d <= ActiveETL::Destination
+        raise Exception, "#{destination_class} is not a #{ActiveETL::Destination.name}" unless d <= ActiveETL::Destination
         
         destination_class
       end
     end
     
     
-    def execution_tree
-      @execution_tree ||= create_execution_tree
+    def execution_sequence
+      @execution_sequence ||= ActiveETL::JobExecutionSequence.new(@destinations)
     end
     
     
-    private
-    
-    def create_execution_tree
-      dependencies_tree = @destinations.map { |d| DestinationDependenciesTree.new(d) }
-#      dependencies_array = (@destinations + @destinations.map(&:etl_destination_dependencies)).flatten.uniq
-#      tree = []
-#      until dependencies_array.blank?
-#        current_level = []
-#        dependencies_array.reverse_each do |t|
-#          if (t.etl_destination_dependencies - tree.flatten).blank?
-#            current_level << t
-#            dependencies_array.delete(t)
-#          end
-#        end
-#        tree << current_level
-#      end
-#      tree
+    def execute
+      execution_sequence.each_destination_in_sequence(&:run_etl)
     end
+    
   end
 end

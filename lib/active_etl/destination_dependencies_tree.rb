@@ -1,9 +1,7 @@
-require 'active_etl/support/tree_node'
-
 module ActiveETL
   class DestinationDependenciesTree
     
-    include ActiveETL::Support::TreeNode
+    include RTree::TreeNode
     
     attr_reader :destination
     
@@ -12,6 +10,16 @@ module ActiveETL
       @children = destination.etl_destination_dependencies.map do |d|
         DestinationDependenciesTree.new(d)
       end
+    end
+    
+    
+    def content
+      destination
+    end
+    
+    
+    def to_s
+      destination.to_s
     end
     
   end

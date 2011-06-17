@@ -1,10 +1,11 @@
 source :gemcutter
 
-gem 'activerecord', '~> 2.3.11'
-gem 'rubytree'
+gem 'activerecord', '~> 2.3.12'
 gem 'gem-this'
 
+# RTree
+gem 'rtree', :git => "git://github.com/AlessandroBerardi/rtree.git"
+
 group :test do
-  # bundler requires these gems while running tests
-#  gem 'rspec-rails', '~> 2.5.0'
+  gem 'rspec'
 end
